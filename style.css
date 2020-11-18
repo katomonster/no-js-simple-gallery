@@ -20,10 +20,10 @@ figure {
 }
 /* figure specific to prev/next actions */
 .for-next {
-    transform: translateX(100%);
+    transform: translateX(-100%);
 }
 .for-prev {
-    transform: translateX(-100%);
+    transform: translateX(100%);
 }
 
 /* thumbnail slider */
@@ -36,10 +36,10 @@ figure {
     transition: transform 500ms;
 }
 .thumb-slider input[type=radio]:active:not(:checked) + .for-next {
-    transform: translateX(-100%);
+    transform: translateX(100%);
 }
 .thumb-slider input[type=radio]:active + .for-prev {
-    transform: translateX(100%);
+    transform: translateX(-100%);
 }
 
 /* next prev button */
@@ -308,18 +308,14 @@ section {
 @media (max-width: 814px) {
     section {
         width: 100%;
-        height: calc(66.625vw + 132px);
+        height: 66.625vw;
     }
     figure {
-        width: calc(100vw - 16px);
-        height: calc(66.625vw - 10px);
-    }
-    .photo-viewer {
-        border-left: 8px solid #fff;
-        border-right: 8px solid #fff;
+        width: 100vw;
+        height: 66.625vw ;
     }
     .thumbnails {
-        margin-top: calc(66.625vw - 10px);
+        margin-top: 66.625vw;
         border-left: 0;
         border-right: 0;
     }
@@ -331,5 +327,18 @@ section {
     }
     .close-btn {
         right: 0;
+    }
+}
+
+@media (max-width: 460px) {
+    .prev-btn:before {
+        transform: rotate(-45deg) scale(0.5) translateX(-100%);
+    }
+    .next-btn:before {
+        transform: rotate(45deg) scale(0.5) translateX(100%);
+    }
+    .close-btn::before {
+        font-size: 20px;
+        transform: translate(100%, -20%);
     }
 }
