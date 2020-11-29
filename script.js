@@ -2,13 +2,19 @@ const state = {
 	currentIndex: 0,
 }
 
+/*
+* based on the currentIndex, show the corresponding image.
+*/
 window.addEventListener('resize', () => {
 	const currentRadioBtn = document.getElementById(`image-${state.currentIndex + 1}`);
-    document.querySelector('.thumb-slider').scrollLeft = window.innerWidth * state.currentIndex;
+    document.querySelector('.gallery-slider').scrollLeft = window.innerWidth * state.currentIndex;
     if (currentRadioBtn) currentRadioBtn.click();
 });
 
-document.querySelector('.thumb-slider').addEventListener('scroll', (e) => {
+/*
+* document index each time an image is swiped in narrow mode
+*/
+document.querySelector('.gallery-slider').addEventListener('scroll', (e) => {
   const forNextFigs = Array.from(e.target.querySelectorAll('figure.for-next'));
   const filtered = (forNextFigs.filter((fig, i) => {
     return fig.offsetLeft === e.target.scrollLeft;
@@ -22,6 +28,9 @@ document.querySelector('.thumb-slider').addEventListener('scroll', (e) => {
 
 }, false);
 
+/*
+* document index each time an arrow button is clicked in wide breakpoint
+*/
 document.querySelectorAll('label.arrow-btn').forEach((btn, i) => {
 	btn.addEventListener('click', () => {
 		state.currentIndex = parseInt(btn.getAttribute('for').replace('image-', '')) - 1;
